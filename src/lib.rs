@@ -1,11 +1,15 @@
-use borsh::BorshDeserialize;
+#[cfg(feature = "anchor")]
+use anchor_lang::prelude::*;
+#[cfg(not(feature = "anchor"))]
 use solana_program::pubkey::Pubkey;
+use borsh::BorshDeserialize;
+
 
 #[derive(Debug)]
 pub struct Ed25519Signature(pub Vec<Ed25519SignatureOffsets>);
 
 impl BorshDeserialize for Ed25519Signature {
-    fn deserialize_reader<R: std::io::Read>(reader: &mut R) -> std::io::Result<Self> {
+    fn deserialize_reader<R: std::io::Read>(reader: &mut R) -> std::result::Result<Ed25519Signature, std::io::Error> {
         let header = Ed25519SignatureHeader::deserialize_reader(reader)?;
         let mut offsets: Vec<Ed25519SignatureOffsets> = Vec::with_capacity(header.num_signatures as usize);
         for _ in 0..header.num_signatures {

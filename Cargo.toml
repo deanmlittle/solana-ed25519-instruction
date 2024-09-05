@@ -1,6 +1,6 @@
 [package]
 name = "solana-ed25519-instruction"
-version = "0.1.0"
+version = "0.2.0"
 description = "Deserialization for Ed25519 instruction data"
 edition = "2021"
 license = "MIT"
@@ -10,7 +10,10 @@ crate-type = ["cdylib", "lib"]
 name = "solana_ed25519_instruction"
 
 [features]
+default = []
+anchor = ["anchor-lang"]
 
 [dependencies]
 borsh = "^0.10.0"
-solana-program = "^2.0.0"
+solana-program = ">=1.17.0,<2.1.0"
+anchor-lang = { version = "^0.30.0", optional = true }
