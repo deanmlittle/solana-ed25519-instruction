@@ -1,6 +1,6 @@
 [package]
 name = "solana-ed25519-instruction"
-version = "0.2.0"
+version = "0.2.1"
 description = "Deserialization for Ed25519 instruction data"
 edition = "2021"
 license = "MIT"
